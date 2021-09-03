@@ -20,6 +20,12 @@ export namespace User {
 
 		return token
 	}
+
+	export async function check_token(): Promise<Schema.User> {
+		const user: Schema.User = await api.get("token/test_header").json()
+
+		return user
+	}
 }
 
 export namespace Lobby {
