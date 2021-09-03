@@ -4,6 +4,7 @@
 	import * as navigation from "$app/navigation"
 	import { User } from "$lib/api"
 	import { user } from "$lib/stores"
+	import Toast from "$lib/components/toast/Toast.svelte"
 
 	let signedIn = false
 
@@ -30,3 +31,5 @@
 {:else}
 	Loading...
 {/if}
+
+<Toast />
