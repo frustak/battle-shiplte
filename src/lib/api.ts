@@ -1,7 +1,18 @@
 import ky from "ky"
 import type { Schema } from "./schemas"
+import { Cookies } from "./utils"
 
-const api = ky.create({ prefixUrl: import.meta.env.VITE_API_ADDRESS })
+const api = ky.create({
+	prefixUrl: import.meta.env.VITE_API_ADDRESS,
+	hooks: {
+		beforeRequest: [
+			(request) => {
+				const accessToken = Cookies.get("access-token")
+				if (accessToken) request.headers.set("Authorization", `bearer ${accessToken}`)
+			},
+		],
+	},
+})
 
 export namespace User {
 	export async function create(formValues: { username: string }): Promise<Schema.Token> {
