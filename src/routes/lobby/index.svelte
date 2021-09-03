@@ -27,7 +27,7 @@
 	}
 </script>
 
-<main class="p-10 h-screen flex flex-col justify-between gap-y-10">
+<main class="page-with-action">
 	<div class="flex flex-col gap-4 overflow-auto px-3">
 		{#each lobbies as lobby}
 			<div class="flex justify-between items-stretch bg-gray-100 rounded">
