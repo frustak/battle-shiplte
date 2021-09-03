@@ -3,6 +3,8 @@
 	import { handleSubmit } from "$lib/utils"
 	import { User } from "$lib/api"
 	import { Cookies } from "$lib/utils/cookies"
+	import { user } from "$lib/stores/user-store"
+	import Button from "$lib/components/Button.svelte"
 
 	let submitting = false
 
@@ -10,13 +12,14 @@
 	const onSubmit = handleSubmit<FormValues>(async (formValues) => {
 		submitting = true
 		const token = await User.create(formValues)
+		user.set(token.user)
 		Cookies.set("access-token", token.access_token)
 		submitting = false
 		navigation.goto("/lobby")
 	})
 </script>
 
-<div class="p-10">
+<main class="p-10">
 	<h1 class="font-extralight text-5xl my-20">Battle Shiplte</h1>
 
 	<form on:submit|preventDefault={onSubmit} class="flex flex-col gap-6">
@@ -28,12 +31,6 @@
 			class="p-2 border rounded border-black transition focus:bg-gray-100"
 		/>
 
-		<button
-			type="submit"
-			disabled={submitting}
-			class="p-2 rounded bg-blue-500 text-white transition focus:bg-blue-600 disabled:bg-gray-400 disabled:cursor-wait"
-		>
-			Play
-		</button>
+		<Button type="submit" disabled={submitting}>Play</Button>
 	</form>
-</div>
+</main>
