@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>⚓ Battle Shiplte</title>
+	<title>Battle Shiplte</title>
 </svelte:head>
 
 <div class="text-gray-900">
