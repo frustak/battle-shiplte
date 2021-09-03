@@ -40,4 +40,18 @@ export namespace Lobby {
 
 		return lobby
 	}
+
+	export async function get(id: number): Promise<Schema.Lobby> {
+		const lobby: Schema.Lobby = await api.get(`lobby/${id}`).json()
+
+		return lobby
+	}
+
+	export async function leave(): Promise<void> {
+		await api.put("leave-lobby")
+	}
+
+	export async function start(): Promise<void> {
+		await api.put("start-lobby")
+	}
 }
