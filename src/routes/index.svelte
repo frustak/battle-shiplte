@@ -4,7 +4,6 @@
 	import { User } from "$lib/api"
 	import { Cookies } from "$lib/utils/cookies"
 	import { user } from "$lib/stores/user-store"
-	import Button from "$lib/components/Button.svelte"
 
 	let submitting = false
 
@@ -31,6 +30,6 @@
 			class="p-2 border rounded border-black transition focus:bg-gray-100"
 		/>
 
-		<Button type="submit" disabled={submitting}>Play</Button>
+		<button type="submit" disabled={submitting} class="btn-blue">Play</button>
 	</form>
 </main>
