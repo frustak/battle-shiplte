@@ -7,7 +7,7 @@
 	import Toast from "$lib/components/toast/Toast.svelte"
 	import { Cookies } from "$lib/utils"
 
-	let signedIn = false
+	let checked = false
 
 	onMount(async () => {
 		const accessToken = Cookies.get("access-token")
@@ -19,7 +19,7 @@
 				navigation.goto("/")
 			}
 		}
-		signedIn = true
+		checked = true
 	})
 </script>
 
@@ -27,12 +27,14 @@
 	<title>Battle Shiplte</title>
 </svelte:head>
 
-{#if signedIn}
+{#if checked}
 	<div class="text-gray-900">
 		<slot />
 	</div>
 {:else}
-	Loading...
+	<div class=" flex justify-center items-center mt-20">
+		<div class="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-gray-900" />
+	</div>
 {/if}
 
 <Toast />
