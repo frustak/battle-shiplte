@@ -50,6 +50,8 @@
 
 	<div class="flex justify-between">
 		<button on:click={onLeave} class="btn-red w-28">Leave</button>
-		<button on:click={onStart} class="btn-blue w-28">Start</button>
+		<button on:click={onStart} disabled={lobby?.players?.length !== 2} class="btn-blue w-28">
+			Start
+		</button>
 	</div>
 </main>
