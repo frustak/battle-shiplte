@@ -12,12 +12,12 @@
 			type="text"
 			name="username"
 			placeholder="Username"
-			class="p-2 border rounded border-black transition focus:bg-gray-50"
+			class="p-2 border rounded border-black transition focus:bg-gray-100"
 		/>
 
 		<button
 			type="submit"
-			class="p-2 rounded bg-blue-500 text-white transition hover:bg-blue-600"
+			class="p-2 rounded bg-blue-500 text-white transition focus:bg-blue-600"
 		>
 			Play
 		</button>
