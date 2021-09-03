@@ -34,4 +34,10 @@ export namespace Lobby {
 
 		return lobbies
 	}
+
+	export async function join(uuid: string): Promise<Schema.Lobby> {
+		const lobby: Schema.Lobby = await api.put("join-lobby", { json: { uuid } }).json()
+
+		return lobby
+	}
 }
