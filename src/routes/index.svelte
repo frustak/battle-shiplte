@@ -1,15 +1,18 @@
 <script lang="ts">
-	import { goto } from "$app/navigation"
+	import * as navigation from "$app/navigation"
 	import { handleSubmit } from "$lib/utils"
 	import { User } from "$lib/api"
 	import { Cookies } from "$lib/utils/cookies"
 
-	type FormValues = { username: string }
+	let submitting = false
 
+	type FormValues = { username: string }
 	const onSubmit = handleSubmit<FormValues>(async (formValues) => {
+		submitting = true
 		const token = await User.create(formValues)
 		Cookies.set("access-token", token.access_token)
-		goto("/lobby")
+		submitting = false
+		navigation.goto("/lobby")
 	})
 </script>
 
@@ -27,7 +30,8 @@
 
 		<button
 			type="submit"
-			class="p-2 rounded bg-blue-500 text-white transition focus:bg-blue-600"
+			disabled={submitting}
+			class="p-2 rounded bg-blue-500 text-white transition focus:bg-blue-600 disabled:bg-gray-400 disabled:cursor-wait"
 		>
 			Play
 		</button>
