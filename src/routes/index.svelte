@@ -1,10 +1,15 @@
 <script lang="ts">
+	import { goto } from "$app/navigation"
 	import { handleSubmit } from "$lib/utils"
+	import { User } from "$lib/api"
+	import { Cookies } from "$lib/utils/cookies"
 
 	type FormValues = { username: string }
 
-	const onSubmit = handleSubmit<FormValues>((formValues) => {
-		console.log(formValues)
+	const onSubmit = handleSubmit<FormValues>(async (formValues) => {
+		const token = await User.create(formValues)
+		Cookies.set("access-token", token.access_token)
+		goto("/lobby")
 	})
 </script>
 
