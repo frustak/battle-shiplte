@@ -5,18 +5,21 @@
 	import { User } from "$lib/api"
 	import { user } from "$lib/stores"
 	import Toast from "$lib/components/toast/Toast.svelte"
+	import { Cookies } from "$lib/utils"
 
 	let signedIn = false
 
 	onMount(async () => {
-		try {
-			const checked_user = await User.check_token()
-			user.set(checked_user)
-			signedIn = true
-		} catch {
-			signedIn = true
-			navigation.goto("/")
+		const accessToken = Cookies.get("access-token")
+		if (accessToken) {
+			try {
+				const checked_user = await User.check_token()
+				user.set(checked_user)
+			} catch {
+				navigation.goto("/")
+			}
 		}
+		signedIn = true
 	})
 </script>
 
