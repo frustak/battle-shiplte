@@ -1,7 +1,11 @@
 <script lang="ts">
-	const onSubmit = async () => {
-		// TODO: Complete user creation
-	}
+	import { handleSubmit } from "$lib/utils"
+
+	type FormValues = { username: string }
+
+	const onSubmit = handleSubmit<FormValues>((formValues) => {
+		console.log(formValues)
+	})
 </script>
 
 <div class="p-10">
@@ -12,6 +16,7 @@
 			type="text"
 			name="username"
 			placeholder="Username"
+			required
 			class="p-2 border rounded border-black transition focus:bg-gray-100"
 		/>
 
