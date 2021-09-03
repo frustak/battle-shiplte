@@ -10,7 +10,6 @@
 		try {
 			await User.check_token()
 			signedIn = true
-			navigation.goto("/lobby")
 		} catch {
 			signedIn = true
 			navigation.goto("/")
