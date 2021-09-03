@@ -17,4 +17,10 @@ export namespace Lobby {
 
 		return lobby
 	}
+
+	export async function list(): Promise<Schema.Lobby[]> {
+		const lobbies: Schema.Lobby[] = await api.get("lobby").json()
+
+		return lobbies
+	}
 }
