@@ -3,12 +3,14 @@
 	import { onMount } from "svelte"
 	import * as navigation from "$app/navigation"
 	import { User } from "$lib/api"
+	import { user } from "$lib/stores"
 
 	let signedIn = false
 
 	onMount(async () => {
 		try {
-			await User.check_token()
+			const checked_user = await User.check_token()
+			user.set(checked_user)
 			signedIn = true
 		} catch {
 			signedIn = true
