@@ -13,15 +13,16 @@
 
 <script lang="ts">
 	import type { Schema } from "$lib/schemas"
-	import { onMount } from "svelte"
 	import * as navigation from "$app/navigation"
 	import { Lobby } from "$lib/api"
+	import { onInterval } from "$lib/utils"
+	import { user } from "$lib/stores"
 
 	export let lobbyId: number
 
 	let lobby: Schema.Lobby = null
 
-	onMount(async () => {
+	onInterval(async () => {
 		lobby = await Lobby.get(lobbyId)
 	})
 
@@ -50,8 +51,14 @@
 
 	<div class="flex justify-between">
 		<button on:click={onLeave} class="btn-red w-28">Leave</button>
-		<button on:click={onStart} disabled={lobby?.players?.length !== 2} class="btn-blue w-28">
-			Start
-		</button>
+		{#if $user.id === lobby?.host?.id}
+			<button
+				on:click={onStart}
+				disabled={lobby?.players?.length !== 2}
+				class="btn-blue w-28"
+			>
+				Start
+			</button>
+		{/if}
 	</div>
 </main>

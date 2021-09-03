@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { Schema } from "$lib/schemas"
-	import { onMount } from "svelte"
 	import * as navigation from "$app/navigation"
-	import { Cookies } from "$lib/utils"
+	import { Cookies, onInterval } from "$lib/utils"
 	import { Lobby } from "$lib/api"
 
 	let lobbies: Schema.Lobby[] = []
 
-	onMount(async () => {
+	onInterval(async () => {
 		lobbies = await Lobby.list()
 	})
 
