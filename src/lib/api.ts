@@ -1,4 +1,5 @@
 import ky from "ky"
+import toast from "./components/toast/toast-store"
 import type { Schema } from "./schemas"
 import { Cookies } from "./utils"
 
@@ -9,6 +10,13 @@ const api = ky.create({
 			(request) => {
 				const accessToken = Cookies.get("access-token")
 				if (accessToken) request.headers.set("Authorization", `bearer ${accessToken}`)
+			},
+		],
+		afterResponse: [
+			(_request, _options, response) => {
+				if (!response.ok) {
+					response.json().then((r) => toast.error(r.detail))
+				}
 			},
 		],
 	},
