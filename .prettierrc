@@ -4,6 +4,5 @@
 	"printWidth": 100,
 	"svelteSortOrder": "options-scripts-markup-styles",
 	"svelteAllowShorthand": true,
-	"semi": false,
-	"arrowParens": "avoid"
+	"semi": false
 }
