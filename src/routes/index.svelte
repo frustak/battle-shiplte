@@ -1,13 +1,13 @@
 <script lang="ts">
 	import * as navigation from "$app/navigation"
-	import { handleSubmit } from "$lib/utils"
+	import { handleSubmit, Cookies } from "$lib/utils"
 	import { User } from "$lib/api"
-	import { Cookies } from "$lib/utils/cookies"
-	import { user } from "$lib/stores/user-store"
+	import { user } from "$lib/stores"
 
 	let submitting = false
 
 	type FormValues = { username: string }
+
 	const onSubmit = handleSubmit<FormValues>(async (formValues) => {
 		submitting = true
 		const token = await User.create(formValues)
