@@ -33,7 +33,11 @@
 				<span class="pl-6 self-center">
 					{lobby.host.username}
 				</span>
-				<button on:click={() => onJoinLobby(lobby.uuid)} class="btn-blue p-4">Join</button>
+				<button
+					on:click={() => onJoinLobby(lobby.uuid)}
+					disabled={lobby.is_full}
+					class="btn-blue p-4">Join</button
+				>
 			</div>
 		{/each}
 	</div>
