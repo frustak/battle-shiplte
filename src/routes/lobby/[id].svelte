@@ -3,7 +3,7 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page }) {
-		const lobbyId = page.params.id
+		const lobbyId: number = page.params.id
 
 		return {
 			props: { lobbyId },

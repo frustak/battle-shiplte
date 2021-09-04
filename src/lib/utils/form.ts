@@ -12,5 +12,6 @@ export function parseRawForm<T>(e: Event): T {
 	const formData = new FormData(form)
 	const entries = formData.entries()
 	const formValues = Object.fromEntries(entries)
+
 	return (formValues as unknown) as T
 }
