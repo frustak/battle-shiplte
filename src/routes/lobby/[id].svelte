@@ -1,13 +1,10 @@
 <script context="module" lang="ts">
-    /**
-     * @type {import('@sveltejs/kit').Load}
-     */
-    export async function load({ page }) {
-        const lobbyId: number = page.params.id
+    import type { Load } from "@sveltejs/kit"
 
-        return {
-            props: { lobbyId },
-        }
+    export const load: Load = ({ page }) => {
+        const lobbyId = page.params.id
+
+        return { props: { lobbyId } }
     }
 </script>
 
