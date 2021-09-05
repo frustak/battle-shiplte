@@ -1,11 +1,11 @@
 import { onDestroy, onMount } from "svelte"
 
 export function onInterval(callback: () => void, milliseconds = 5000): void {
-	onMount(callback)
+    onMount(callback)
 
-	const interval = setInterval(callback, milliseconds)
+    const interval = setInterval(callback, milliseconds)
 
-	onDestroy(() => {
-		clearInterval(interval)
-	})
+    onDestroy(() => {
+        clearInterval(interval)
+    })
 }
